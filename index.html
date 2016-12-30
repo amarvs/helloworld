@@ -29,25 +29,15 @@
                     
                     ComponentVisibilityMixin
                 ],
-                componentVisibilityChanged(){
-                    console.log('scroll into view');
-                    this.disableVisibilityHandling();
-                },
+                
                 getInitialState(){
                     return {
-                    promocode: [{"Title":"Universal Studio Singapore Promotion: Winter Season","PromoPer":" 01 Dec 2016 to 02 Jan 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"},
-{"Title":"Financial Planning Awareness Talk","PromoPer":"25 Oct 2016 to 04 Nov 2016","PostedBy":"MSS-PSC","Date":"30/12/2016"},
-{"Title":"Holiday Promotion: Mandarin, Singapore (Applicable for Fridays to Sundays, Eve of Public Holidays and Public Holidays)","PromoPer":"28 Oct 2016 to 31 Mar 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"}]
+                    promodata: [{"Title":"Lorel Ipsum 1","PromoPer":" 01 Dec 2016 to 02 Jan 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"},
+{"Title":"Lorel Ipsum 1","PostedBy":"MSS-PSC","Date":"30/12/2016"},
+{"Title":"Lorel Ipsum 1","PromoPer":"28 Oct 2016 to 31 Mar 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"}]
                 }
                },
-
-                getPromoData(){
-                    return [{"Title":"Universal Studio Singapore Promotion: Winter Season","PromoPer":" 01 Dec 2016 to 02 Jan 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"},
-{"Title":"Financial Planning Awareness Talk","PromoPer":"25 Oct 2016 to 04 Nov 2016","PostedBy":"MSS-PSC","Date":"30/12/2016"},
-{"Title":"Holiday Promotion: Mandarin, Singapore (Applicable for Fridays to Sundays, Eve of Public Holidays and Public Holidays)","PromoPer":"28 Oct 2016 to 31 Mar 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"}]
-                },
-
-                componentDidMount(){
+                retrieveFromWebService(){
                     var that = this;
                     var url = 'sampledata.json';
                     fetch(url)
@@ -61,9 +51,14 @@
                         that.setstate({promodata:data});
                     });
                 },
+                componentVisibilityChanged(){
+                    console.log('scroll into view');
+                    this.retrieveFromWebService();
+                    this.disableVisibilityHandling();
+                },
 
                 renderPromotions(){
-                    return this.getPromoData().map((promoitem)=>(
+                    return this.state.promodata.map((promoitem)=>(
                         <GoodDeal appitem={promoitem} />
                     ));
                    
