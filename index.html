@@ -3,6 +3,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
         <script src="https://unpkg.com/react@15/dist/react.js"></script>
         <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <!-- visibility mixin-->
+        <script src="./node_modules/react-component-visibility/index.js"></script>
+        
+
         <script type="text/babel">
 
             var GoodDeal = React.createClass({
@@ -21,6 +25,14 @@
             
             var GoodDeals = React.createClass({
 
+                mixins : [
+                    
+                    ComponentVisibilityMixin
+                ],
+                componentVisibilityChanged(){
+                    console.log('scroll into view');
+                    this.disableVisibilityHandling();
+                },
                 getInitialState(){
                     return {
                     promocode: [{"Title":"Universal Studio Singapore Promotion: Winter Season","PromoPer":" 01 Dec 2016 to 02 Jan 2017","PostedBy":"MSS-PSC","Date":"30/12/2016"},
