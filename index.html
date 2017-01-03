@@ -13,7 +13,7 @@
                 render(){
                     return <div className="col-md-12">
                         <div className="item">
-                            <a hre="" className="title"><h5>{this.props.appitem.Title}</h5></a>
+                            <a href="" className="title"><h5>{this.props.appitem.Title}</h5></a>
                             <span className="validperiod">Promo Period: {this.props.appitem.PromoPer}</span>
                             <span className="author">Posted By:{this.props.appitem.PostedBy}</span>
                             <span className="timeago">in {this.props.appitem.Date}</span>
@@ -39,7 +39,7 @@
                },
                 retrieveFromWebService(){
                     var that = this;
-                    var url = 'sampledata.json';
+                    var url = '/SiteAssets/GoodDeals/sampledealsdata.js';
                     fetch(url)
                     .then(function(response){
                         if(response.status >= 404){
@@ -48,7 +48,7 @@
                         return response.json();
                     })
                     .then(function(data){
-                        that.setstate({promodata:data});
+                        that.setState({promodata:data});
                     });
                 },
                 componentVisibilityChanged(){
@@ -74,7 +74,7 @@
             });
 
             ReactDOM.render(
-                    <GoodDeals />,
+                    <GoodDeals />,  
                     document.getElementById('root')
             );
         </script>
